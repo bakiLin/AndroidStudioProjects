@@ -16,7 +16,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        fragment  = new WorkerFragment();
+        //fragment  = new WorkerFragment();
+        //fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+
+        //fragment = new CompassFragment();
+        //fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+
+        //fragment = new CameraFragment();
+        //fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+
+        fragment = new MicrophoneFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
     }

@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'ru.mirea.bakiev.mireaproject'
+    namespace 'ru.mirea.bakiev.audiorecord'
     compileSdk 34
 
     defaultConfig {
-        applicationId "ru.mirea.bakiev.mireaproject"
+        applicationId "ru.mirea.bakiev.audiorecord"
         minSdk 26
         targetSdk 34
         versionCode 1
@@ -22,17 +22,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures   {
+        viewBinding	true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildFeatures   {
-        viewBinding	true
-    }
 }
 
 dependencies {
-    implementation	'androidx.work:work-runtime:2.9.0'
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
