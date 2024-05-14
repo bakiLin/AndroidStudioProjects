@@ -28,7 +28,15 @@ public class MainActivity extends AppCompatActivity {
         //fragmentManager = getSupportFragmentManager();
         //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
 
-        fragment = new MicrophoneFragment();
+        //fragment = new MicrophoneFragment();
+        //fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+
+        //fragment = new ProfileFragment();
+        //fragmentManager = getSupportFragmentManager();
+        //fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
+
+        fragment = new WorkWithFilesFragment();
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();
     }
