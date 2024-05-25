@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import ru.mirea.bakiev.mireaproject.databinding.FragmentMicrophoneBinding;
 import ru.mirea.bakiev.mireaproject.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
