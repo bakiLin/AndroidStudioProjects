@@ -29,8 +29,7 @@ import java.util.List;
 import ru.mirea.bakiev.yandexdriver.databinding.ActivityMainBinding;
 
 // Изменил координаты ROUTE_START_LOCATION на свое местоположение
-// Потому что не удается изменить локацию
-// Через настройки эмулятора
+// Потому что не удается изменить локацию через настройки эмулятора
 // Пруф в папке raw
 
 public class MainActivity extends AppCompatActivity implements DrivingSession.DrivingRouteListener {
