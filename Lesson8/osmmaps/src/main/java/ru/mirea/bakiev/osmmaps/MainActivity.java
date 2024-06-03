@@ -1,10 +1,13 @@
 package ru.mirea.bakiev.osmmaps;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.preference.PreferenceManager;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
@@ -35,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         mapView = binding.mapView;
+
+        ActivityCompat.requestPermissions(this,	new	String[] {
+                android.Manifest.permission.ACCESS_FINE_LOCATION},	100);
 
         mapView.setZoomRounding(true);
         mapView.setMultiTouchControls(true);
