@@ -34,27 +34,25 @@ public class MainActivity extends AppCompatActivity {
         quote = findViewById(R.id.quote);
 
         if ((isExternalStorageReadable() || isExternalStorageWritable()) == false) {
-            ActivityCompat.requestPermissions(this,	new	String[]
-                            {android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            ActivityCompat.requestPermissions(this,	new	String[] {
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_CODE_PERMISSION);
         }
+    }
+
+    /* Проверяем внешнее хранилище на доступность чтения */
+    public boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) || Environment.MEDIA_MOUNTED_READ_ONLY.equals(state))
+            return true;
+        return false;
     }
 
     /* Проверяем хранилище на доступность чтения и записи*/
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
+        if (Environment.MEDIA_MOUNTED.equals(state))
             return true;
-        }
-        return false;
-    }
-    /* Проверяем внешнее хранилище на доступность чтения */
-    public boolean isExternalStorageReadable() {
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state) ||
-                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-            return true;
-        }
         return false;
     }
 
@@ -66,18 +64,15 @@ public class MainActivity extends AppCompatActivity {
             OutputStreamWriter output = new OutputStreamWriter(fileOutputStream);
             //	Запись строки в файл
             output.write(quote.getText().toString());
-
             //	Закрытие потока записи
             output.close();
-
         } catch (IOException e) {
             Log.w("ExternalStorage", "Error writing " + file, e);
         }
     }
 
     public void ReadFile(View view) {
-        File path = Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOCUMENTS);
+        File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS);
         File file =	new	File(path, fileName.getText().toString());
         try	{
             FileInputStream fileInputStream	=	new	FileInputStream(file.getAbsoluteFile());

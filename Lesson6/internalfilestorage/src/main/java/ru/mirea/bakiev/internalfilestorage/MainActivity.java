@@ -32,14 +32,12 @@ public class MainActivity extends AppCompatActivity {
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String(bytes);
-
             return text;
         } catch (IOException ex) {
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         } finally {
             try {
-                if (fin != null)
-                    fin.close();
+                if (fin != null) fin.close();
             } catch (IOException ex) {
                 Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -49,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onSaveClicked(View view) {
-        String content = inputField.getText().toString();
-        FileOutputStream outputStream;
         try {
-            outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
-            outputStream.write(content.getBytes());
+            String date = inputField.getText().toString();
+            FileOutputStream outputStream = openFileOutput(fileName, Context.MODE_PRIVATE);
+            outputStream.write(date.getBytes());
             outputStream.close();
         } catch (Exception e) {
             e.printStackTrace();

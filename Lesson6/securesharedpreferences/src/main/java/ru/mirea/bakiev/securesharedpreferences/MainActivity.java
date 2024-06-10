@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         KeyGenParameterSpec keyGenParameterSpec	= MasterKeys.AES256_GCM_SPEC;
         try {
             String mainKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec);
-
             SharedPreferences secureSharedPreferences = EncryptedSharedPreferences.create(
                     "secret_shared_prefs",
                     mainKeyAlias,
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                     EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                     EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             );
-            secureSharedPreferences.edit().putString("secure", "Пушкин А.С.");
+            secureSharedPreferences.edit().putString("secure", "Жак Фреско").apply();
         } catch	(GeneralSecurityException | IOException e) {
             throw new	RuntimeException(e);
         }
