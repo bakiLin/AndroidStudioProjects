@@ -15,20 +15,26 @@ public class MyLooper extends Thread {
 
     public void run() {
         Log.d("MyLooper", "run");
-        Looper.prepare();
-        mHandler = new Handler(Looper.myLooper()) {
+        Looper.prepare();   //Создание цикла
+        mHandler = new Handler(Looper.myLooper()) { //Получение и отправка данных
             public void handleMessage(Message msg) {
                 String data = msg.getData().getString("KEY");
+                Integer age = msg.getData().getInt("AGE");
                 Log.d("MyLooper get message: ", data);
 
                 int count = data.length();
                 Message	message	= new Message();
                 Bundle bundle = new	Bundle();
-                bundle.putString("result", String.format("The number of	letters	in the word	%s is %d ",data,count));
+
+                bundle.putString("result", String.format("The number of	letters	in the word	%s is %d ", data, count));
                 message.setData(bundle);
-                mainHandler.sendMessage(message);
+
+                mainHandler.postDelayed(() -> {
+                    mainHandler.sendMessage(message);
+                    }, age);
             }
         };
-        Looper.loop();
+
+        Looper.loop(); //Запуск цикла
     }
 }

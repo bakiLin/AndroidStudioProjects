@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         setContentView(R.layout.activity_main);
     }
 
-    public void	onClickButton(View view)	{
+    public void	onClickButton(View view) {
         Bundle bundle =	new	Bundle();
         SecretKey key = generateKey();
         String editTextInput = ((EditText)findViewById(R.id.editTextText)).getText().toString();
-        bundle.putByteArray(MyLoader.ARG_WORD,	encryptMsg(editTextInput, key));
-        bundle.putByteArray("key",	key.getEncoded());
-        LoaderManager.getInstance(this).initLoader(LoaderID,	bundle,	this);
+        bundle.putByteArray(MyLoader.ARG_WORD, encryptMsg(editTextInput, key));
+        bundle.putByteArray("key", key.getEncoded());
+        LoaderManager.getInstance(this).initLoader(LoaderID, bundle, this);
     }
 
     @NonNull
@@ -68,13 +68,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     public	static SecretKey generateKey(){
         try	{
-            SecureRandom sr	=	SecureRandom.getInstance("SHA1PRNG");
+            SecureRandom sr	= SecureRandom.getInstance("SHA1PRNG");
             sr.setSeed("any	data	used	as	random	seed".getBytes());
             KeyGenerator kg	=	KeyGenerator.getInstance("AES");
-            kg.init(256,	sr);
-            return	new SecretKeySpec((kg.generateKey()).getEncoded(),	"AES");
-        }	catch	(NoSuchAlgorithmException e)	{
-            throw	new	RuntimeException(e);
+            kg.init(256, sr);
+            return new SecretKeySpec((kg.generateKey()).getEncoded(), "AES");
+        }	catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 

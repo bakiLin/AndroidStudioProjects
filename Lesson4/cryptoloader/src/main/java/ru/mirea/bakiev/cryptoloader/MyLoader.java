@@ -18,19 +18,19 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 public class MyLoader extends AsyncTaskLoader<String> {
-    private String firstName;
     private String decode;
     public static final	String ARG_WORD	= "word";
     public MyLoader(@NonNull Context context, Bundle args) {
         super(context);
         if (args !=	null) {
-            byte[]	cryptText	=	args.getByteArray(ARG_WORD);
-            byte[]	key	=	args.getByteArray("key");
+            byte[] cryptText =	args.getByteArray(ARG_WORD);
+            byte[] key	= args.getByteArray("key");
 
-            SecretKey originalKey =	new SecretKeySpec(key,	0,	key.length,	"AES");
+            SecretKey originalKey =	new SecretKeySpec(key, 0,	key.length, "AES");
             decode = decryptMsg(cryptText, originalKey);
         }
     }
+
     @Override
     protected void onStartLoading()	{
         super.onStartLoading();
@@ -39,17 +39,16 @@ public class MyLoader extends AsyncTaskLoader<String> {
     @Override
     public String loadInBackground() {
         SystemClock.sleep(5000);
-        return firstName;
+        return decode;
     }
 
-    public	static	String	decryptMsg(byte[]	cipherText,	SecretKey	secret){
+    public static String decryptMsg(byte[] cipherText, SecretKey secret) {
         try	{
-            Cipher cipher	=	Cipher.getInstance("AES");
-            cipher.init(Cipher.DECRYPT_MODE,	secret);
-            return	new	String(cipher.doFinal(cipherText));
-        }	catch	(NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException
-                       | BadPaddingException | InvalidKeyException e)	{
-            throw	new	RuntimeException(e);
+            Cipher cipher =	Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secret);
+            return new String(cipher.doFinal(cipherText));
+        } catch	(NoSuchAlgorithmException | NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException | InvalidKeyException e) {
+            throw new RuntimeException(e);
         }
     }
 }

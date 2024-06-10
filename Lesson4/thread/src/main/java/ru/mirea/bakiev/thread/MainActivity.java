@@ -13,11 +13,14 @@ import ru.mirea.bakiev.thread.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    private TextView resultText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding	= ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        resultText = binding.textViewResult;
 
         TextView infoTextView = findViewById(R.id.textView);
         Thread mainThread = Thread.currentThread();

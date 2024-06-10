@@ -19,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding	= ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Handler mainThreadHandler = new Handler(Looper.getMainLooper()) {
+        Handler mainThreadHandler = new Handler(Looper.getMainLooper()) { //Создание обработчика данных
             @Override
             public void handleMessage(@NonNull Message msg) {
                 Log.d(MainActivity.class.getSimpleName(), "Execute result: " + msg.getData().getString("result"));
             }
         };
 
-        MyLooper myLooper =	new	MyLooper(mainThreadHandler);
+        MyLooper myLooper =	new	MyLooper(mainThreadHandler); //Создание и запуск потока
         myLooper.start();
 
         binding.editTextMirea.setText("Мой номер по списку №3");
@@ -35,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Message msg = Message.obtain();
                 Bundle bundle = new Bundle();
-                bundle.putString("KEY", binding.editTextAge.getText().toString() + " лет, " + binding.editTextWork.getText()
-                        .toString() + " должность");
+                bundle.putString("KEY", binding.editTextAge.getText().toString() + " лет, " +
+                        binding.editTextWork.getText().toString() + " должность");
+                bundle.putInt("AGE", Integer.parseInt(binding.editTextAge.getText().toString()));
                 msg.setData(bundle);
                 myLooper.mHandler.sendMessage(msg);
             }
