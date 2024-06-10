@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
                 BufferedReader reader = SocketUtils.getReader(socket);
                 reader.readLine();
                 timeResult = reader.readLine();
-                Log.d("TAG",timeResult);
                 socket.close();
             } catch (IOException e) {
                 e.printStackTrace();

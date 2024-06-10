@@ -39,17 +39,16 @@ public class MainActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager connectivityManager =
-                        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkinfo = null;
-                if (connectivityManager != null) {
+
+                if (connectivityManager != null)
                     networkinfo = connectivityManager.getActiveNetworkInfo();
-                }
-                if (networkinfo != null && networkinfo.isConnected()) {
+
+                if (networkinfo != null && networkinfo.isConnected())
                     new DownloadPageTask().execute("https://ipinfo.io/json");
-                } else {
+                else
                     Toast.makeText(v.getContext(), "", Toast.LENGTH_SHORT).show();
-                }
             }
         });
     }
@@ -77,14 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject responseJson = new JSONObject(result);
                 if (responseJson.has("current_weather")) {
                     JSONObject weatherJson = new JSONObject(responseJson.getString("current_weather"));
-                    Objects.requireNonNull(binding.weatherTextView).setText("Temperature: " + weatherJson.getString("temperature") + "\n"
+                    Objects.requireNonNull(binding.weatherTextView).setText(
+                            "Temperature: " + weatherJson.getString("temperature") + "\n"
                             + "Wind Speed: " + weatherJson.getString("windspeed") + "\n"
                             + "Wind Direction: " + weatherJson.getString("winddirection"));
                 } else {
                     Iterator<String> iter = responseJson.keys();
                     String temp = "";
 
-                    while(iter.hasNext()){
+                    while(iter.hasNext()) {
                         String key = iter.next();
                         temp += key.toString() + ": " + responseJson.get(key) + "\n";
                     }
@@ -118,21 +118,19 @@ public class MainActivity extends AppCompatActivity {
                     inputStream = connection.getInputStream();
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     int read = 0;
-                    while ((read = inputStream.read()) != -1) {
+                    while ((read = inputStream.read()) != -1)
                         bos.write(read);
-                    }
                     bos.close();
                     data = bos.toString();
-                } else {
+                } else
                     data = connection.getResponseMessage() + ". Error Code: " + responseCode;
-                }
                 connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                if (inputStream != null) {
+            }
+            finally {
+                if (inputStream != null)
                     inputStream.close();
-                }
             }
             return data;
         }
