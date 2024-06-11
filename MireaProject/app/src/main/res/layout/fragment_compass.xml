@@ -8,21 +8,25 @@
     android:paddingBottom="20dp"
     android:paddingHorizontal="20dp">
 
-    <ImageView
-        android:id="@+id/compassImage"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_centerInParent="true"
-        app:srcCompat="@drawable/ic_launcher_background" />
-
     <TextView
-        android:id="@+id/degreesText"
+        android:id="@+id/azimuthText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Degrees: 0"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:text="Азимут: 0"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
         android:textColor="@color/black"
         android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/reverseAzimuthText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="100dp"
+        android:text="Обратный азимут: 0" />
 
 </RelativeLayout>

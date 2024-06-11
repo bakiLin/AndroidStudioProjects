@@ -22,8 +22,8 @@ public class MainActivity extends AppCompatActivity {
         //fragment = new MicrophoneFragment();
         //fragment = new ProfileFragment();
         //fragment = new WorkWithFilesFragment();
-        fragment = new FirebaseInfoFragment();
-        //fragment = new PlacesFragment();
+        //fragment = new FirebaseInfoFragment();
+        fragment = new PlacesFragment();
 
         fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, fragment).commit();

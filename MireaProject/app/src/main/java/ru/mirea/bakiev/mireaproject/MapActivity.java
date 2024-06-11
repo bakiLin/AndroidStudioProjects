@@ -28,30 +28,28 @@ import ru.mirea.bakiev.mireaproject.databinding.ActivityMapBinding;
 
 public class MapActivity extends AppCompatActivity {
     private MapView mapView = null;
-    private ActivityMapBinding binding;
-    private String name;
-    private double lat;
-    private double longitude;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityMapBinding binding = ActivityMapBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         Configuration.getInstance().load(getApplicationContext(),
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
-        binding = ActivityMapBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+
         mapView = binding.mapView;
 
         Intent intent = getIntent();
-        name = intent.getStringExtra("name");
-        lat = intent.getDoubleExtra("lat", 0);
-        longitude = intent.getDoubleExtra("long", 0);
+        String name = intent.getStringExtra("name");
+        double latitude = intent.getDoubleExtra("lat", 0);
+        double longitude = intent.getDoubleExtra("long", 0);
 
         mapView.setZoomRounding(true);
         mapView.setMultiTouchControls(true);
 
         IMapController mapController = mapView.getController();
         mapController.setZoom(15.0);
-        GeoPoint startPoint = new GeoPoint(lat, longitude);
+        GeoPoint startPoint = new GeoPoint(latitude, longitude);
         mapController.setCenter(startPoint);
 
         MyLocationNewOverlay locationNewOverlay = new MyLocationNewOverlay(new
@@ -72,18 +70,17 @@ public class MapActivity extends AppCompatActivity {
         mapView.getOverlays().add(scaleBarOverlay);
 
         Marker marker = new Marker(mapView);
-        marker.setPosition(new GeoPoint(lat, longitude));
+        marker.setPosition(new GeoPoint(latitude, longitude));
         mapView.getOverlays().add(marker);
-        marker.setIcon(ResourcesCompat.getDrawable(getResources(), org.osmdroid.library.R.drawable.osm_ic_follow_me_on, null));
+        marker.setIcon(ResourcesCompat.getDrawable(getResources(),
+                org.osmdroid.library.R.drawable.osm_ic_follow_me_on,
+                null));
         marker.setTitle(name);
 
-        binding.toKremlButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mapController.setZoom(17.0);
-                GeoPoint startPoint = new GeoPoint(new GeoPoint(55.751426, 37.618879));
-                mapController.setCenter(startPoint);
-            }
+        binding.toKremlButton.setOnClickListener(v -> {
+            mapController.setZoom(16.0);
+            GeoPoint startPoint1 = new GeoPoint(new GeoPoint(55.751426, 37.618879));
+            mapController.setCenter(startPoint1);
         });
     }
 
@@ -92,17 +89,16 @@ public class MapActivity extends AppCompatActivity {
         super.onResume();
         Configuration.getInstance().load(getApplicationContext(),
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
-        if (mapView != null) {
+        if (mapView != null)
             mapView.onResume();
-        }
     }
+
     @Override
     public void onPause() {
         super.onPause();
         Configuration.getInstance().save(getApplicationContext(),
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
-        if (mapView != null) {
+        if (mapView != null)
             mapView.onPause();
-        }
     }
 }

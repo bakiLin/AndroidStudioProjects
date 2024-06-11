@@ -20,15 +20,8 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 public class WorkerFragment extends Fragment {
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         WorkRequest workRequest = new OneTimeWorkRequest.Builder(MyWorker.class).build();
         WorkManager
                 .getInstance(getActivity())

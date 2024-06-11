@@ -41,26 +41,11 @@ public class PlacesFragment extends Fragment {
         }
         binding.placesText.setText(places);
 
-        binding.showMap1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendPlaceInfo(0);
-            }
-        });
+        binding.showMap1.setOnClickListener(v -> SendPlaceInfo(0));
 
-        binding.showMap2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendPlaceInfo(1);
-            }
-        });
+        binding.showMap2.setOnClickListener(v -> SendPlaceInfo(1));
 
-        binding.showMap3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SendPlaceInfo(2);
-            }
-        });
+        binding.showMap3.setOnClickListener(v -> SendPlaceInfo(2));
 
         return view;
     }

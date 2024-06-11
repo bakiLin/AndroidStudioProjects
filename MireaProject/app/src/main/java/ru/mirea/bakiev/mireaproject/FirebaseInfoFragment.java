@@ -39,33 +39,22 @@ public class FirebaseInfoFragment extends Fragment {
     private FragmentFirebaseInfoBinding binding;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentFirebaseInfoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
-
         new DownloadPageTask().execute("https://ipinfo.io/json");
 
-        binding.signOutFragmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                Intent intent = new Intent(getActivity(), FirebaseActivity.class);
-                startActivity(intent);
-            }
+        mAuth = FirebaseAuth.getInstance();
+        binding.signOutFragmentButton.setOnClickListener(v -> {
+            mAuth.signOut();
+            Intent intent = new Intent(getActivity(), FirebaseActivity.class);
+            startActivity(intent);
         });
-
         return view;
     }
 
-    public class DownloadPageTask  extends AsyncTask<String, Void, String> {
+    public class DownloadPageTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -82,9 +71,7 @@ public class FirebaseInfoFragment extends Fragment {
                 JSONObject responseJson = new JSONObject(result);
                 if (responseJson.has("current_weather")) {
                     JSONObject weatherJson = new JSONObject(responseJson.getString("current_weather"));
-                    Objects.requireNonNull(binding.userIDtext).setText("Temperature: " + weatherJson.getString("temperature") + "\n"
-                            + "Wind Speed: " + weatherJson.getString("windspeed") + "\n"
-                            + "Wind Direction: " + weatherJson.getString("winddirection"));
+                    Objects.requireNonNull(binding.userIDtext).setText("Temperature: " + weatherJson.getString("temperature"));
                 } else {
                     String latitude = responseJson.getString("loc").split(",")[0];
                     String longitude = responseJson.getString("loc").split(",")[1];
@@ -114,21 +101,18 @@ public class FirebaseInfoFragment extends Fragment {
                     inputStream = connection.getInputStream();
                     ByteArrayOutputStream bos = new ByteArrayOutputStream();
                     int read = 0;
-                    while ((read = inputStream.read()) != -1) {
+                    while ((read = inputStream.read()) != -1)
                         bos.write(read);
-                    }
                     bos.close();
                     data = bos.toString();
-                } else {
+                } else
                     data = connection.getResponseMessage() + ". Error Code: " + responseCode;
-                }
                 connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
-                if (inputStream != null) {
+                if (inputStream != null)
                     inputStream.close();
-                }
             }
             return data;
         }
