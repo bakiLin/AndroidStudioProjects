@@ -1,13 +1,9 @@
 package ru.mirea.bakiev.recipe_app.domain.repository;
 
-import ru.mirea.bakiev.recipe_app.domain.models.User;
-
 public interface UserRepository {
-    public boolean logIn();
+    public boolean signUp(String email, String pass);
 
-    public boolean logOut();
+    public boolean singIn(String email, String pass);
 
-    public boolean register();
-
-    public User getUserInfo();
+    public boolean signOut();
 }

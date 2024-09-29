@@ -2,14 +2,14 @@ package ru.mirea.bakiev.recipe_app.domain.usecases;
 
 import ru.mirea.bakiev.recipe_app.domain.repository.RecipeRepository;
 
-public class ViewCommentsUseCase {
+public class AddToFavouriteUseCase {
     private RecipeRepository recipeRepository;
 
-    public ViewCommentsUseCase(RecipeRepository recipeRepository) {
+    public AddToFavouriteUseCase(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
-    public String[] execute() {
-        return recipeRepository.getComments();
+    public boolean execute(Integer recipeID) {
+        return recipeRepository.addToFavourite(recipeID);
     }
 }

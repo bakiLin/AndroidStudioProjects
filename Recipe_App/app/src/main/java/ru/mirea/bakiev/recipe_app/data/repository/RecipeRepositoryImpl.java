@@ -1,52 +1,57 @@
 package ru.mirea.bakiev.recipe_app.data.repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import ru.mirea.bakiev.recipe_app.domain.models.Category;
 import ru.mirea.bakiev.recipe_app.domain.models.Recipe;
 import ru.mirea.bakiev.recipe_app.domain.repository.RecipeRepository;
 
 public class RecipeRepositoryImpl implements RecipeRepository {
-    private Recipe recipe;
+    private List<Recipe> recipes = new ArrayList<>(
+            List.of(
+                    new Recipe(
+                            0, "Лазанья",
+                            "Вкусная штука",
+                            "любитель лазаньи",
+                            Arrays.asList(Category.Second_Course))
+            )
+    );
 
-    public RecipeRepositoryImpl(Recipe recipe) {
-        this.recipe = recipe;
+    public List<Recipe> getAllRecipes() {
+        return recipes;
     }
 
-    public Recipe getRecipe() {
-        return Recipe.temp;
+    public List<Recipe> filterByCategory(Category category) {
+        return recipes;
     }
 
-    public boolean createRecipe() {
+    public List<Recipe> filterByName(String name) {
+        return recipes;
+    }
+
+    public List<Recipe> filterByFavourite(Integer userID) {
+        return recipes;
+    }
+
+    public Recipe getRecipe(Integer recipeID) {
+        return recipes.get(recipeID);
+    }
+
+    public boolean addToFavourite(Integer recipeID) {
         return true;
     }
 
-    public boolean editRecipe() {
+    public boolean createRecipe(Recipe recipe) {
         return true;
     }
 
-    public boolean deleteRecipe() {
+    public boolean editRecipe(Recipe recipe) {
         return true;
     }
 
-    public boolean addToFavourite() {
+    public boolean deleteRecipe(Integer recipeID) {
         return true;
-    }
-
-    public Recipe[] getFavourites() {
-        return new Recipe[] {Recipe.temp};
-    }
-
-    public Recipe[] filterByCategory() {
-        return new Recipe[] {Recipe.temp};
-    }
-
-    public Recipe[] filterByIngredient() {
-        return new Recipe[] {Recipe.temp};
-    }
-
-    public boolean leaveComment() {
-        return true;
-    }
-
-    public String[] getComments() {
-        return new String[] {"Получилось очень вкусно!!"};
     }
 }

@@ -9,7 +9,7 @@ public class DeleteRecipeUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute() {
-        return recipeRepository.deleteRecipe();
+    public boolean execute(Integer recipeID) {
+        return recipeRepository.deleteRecipe(recipeID);
     }
 }

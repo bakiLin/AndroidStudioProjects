@@ -1,17 +1,17 @@
 package ru.mirea.bakiev.recipe_app.presentation;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import ru.mirea.bakiev.recipe_app.R;
 import ru.mirea.bakiev.recipe_app.data.repository.RecipeRepositoryImpl;
-import ru.mirea.bakiev.recipe_app.data.repository.UserRepositoryImpl;
 import ru.mirea.bakiev.recipe_app.domain.models.Recipe;
-import ru.mirea.bakiev.recipe_app.domain.models.User;
 import ru.mirea.bakiev.recipe_app.domain.repository.RecipeRepository;
-import ru.mirea.bakiev.recipe_app.domain.repository.UserRepository;
+import ru.mirea.bakiev.recipe_app.domain.usecases.GetRecipeUseCase;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -19,10 +19,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecipeRepository recipeRepository = new RecipeRepositoryImpl(Recipe.temp);
-        recipeRepository.getRecipe();
+        TextView recipeText = findViewById(R.id.recipeTextView);
+        Button showRecipeButton = findViewById(R.id.showRecipeButton);
 
-        UserRepository userRepository = new UserRepositoryImpl(User.temp);
-        userRepository.getUserInfo();
+        RecipeRepository recipeRepository = new RecipeRepositoryImpl();
+
+        showRecipeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recipe recipe = new GetRecipeUseCase(recipeRepository).execute(0);
+
+                recipeText.setText("Название: " + recipe.getName() + "\n");
+                recipeText.append("Описание: " + recipe.getDescription() + "\n");
+                recipeText.append("Автор: " + recipe.getAuthor());
+            }
+        });
     }
 }

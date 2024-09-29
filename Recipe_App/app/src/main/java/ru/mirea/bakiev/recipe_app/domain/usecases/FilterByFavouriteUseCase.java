@@ -1,16 +1,18 @@
 package ru.mirea.bakiev.recipe_app.domain.usecases;
 
+import java.util.List;
+
 import ru.mirea.bakiev.recipe_app.domain.models.Recipe;
 import ru.mirea.bakiev.recipe_app.domain.repository.RecipeRepository;
 
-public class LeaveCommentToRecipeUseCase {
+public class FilterByFavouriteUseCase {
     private RecipeRepository recipeRepository;
 
-    public LeaveCommentToRecipeUseCase(RecipeRepository recipeRepository) {
+    public FilterByFavouriteUseCase(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute() {
-        return recipeRepository.leaveComment();
+    public List<Recipe> execute(Integer userID) {
+        return recipeRepository.filterByFavourite(userID);
     }
 }

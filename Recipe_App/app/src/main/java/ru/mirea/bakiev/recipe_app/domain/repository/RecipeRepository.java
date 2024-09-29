@@ -1,25 +1,26 @@
 package ru.mirea.bakiev.recipe_app.domain.repository;
 
+import java.util.List;
+
+import ru.mirea.bakiev.recipe_app.domain.models.Category;
 import ru.mirea.bakiev.recipe_app.domain.models.Recipe;
 
 public interface RecipeRepository {
-    public Recipe getRecipe();
+    public List<Recipe> getAllRecipes();
 
-    public boolean createRecipe();
+    public List<Recipe> filterByCategory(Category category);
 
-    public boolean editRecipe();
+    public List<Recipe> filterByName(String name);
 
-    public boolean deleteRecipe();
+    public List<Recipe> filterByFavourite(Integer userID);
 
-    public boolean addToFavourite();
+    public Recipe getRecipe(Integer recipeID);
 
-    public Recipe[] getFavourites();
+    public boolean addToFavourite(Integer recipeID);
 
-    public Recipe[] filterByCategory();
+    public boolean createRecipe(Recipe recipe);
 
-    public Recipe[] filterByIngredient();
+    public boolean editRecipe(Recipe recipe);
 
-    public boolean leaveComment();
-
-    public String[] getComments();
+    public boolean deleteRecipe(Integer recipeID);
 }

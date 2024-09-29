@@ -1,16 +1,18 @@
 package ru.mirea.bakiev.recipe_app.domain.usecases;
 
+import java.util.List;
+
 import ru.mirea.bakiev.recipe_app.domain.models.Recipe;
 import ru.mirea.bakiev.recipe_app.domain.repository.RecipeRepository;
 
-public class FilterByIngredientUseCase {
+public class FilterByNameUseCase {
     private RecipeRepository recipeRepository;
 
-    public FilterByIngredientUseCase(RecipeRepository recipeRepository) {
+    public FilterByNameUseCase(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
-    public Recipe[] execute() {
-        return recipeRepository.filterByIngredient();
+    public List<Recipe> execute(String name) {
+        return recipeRepository.filterByName(name);
     }
 }

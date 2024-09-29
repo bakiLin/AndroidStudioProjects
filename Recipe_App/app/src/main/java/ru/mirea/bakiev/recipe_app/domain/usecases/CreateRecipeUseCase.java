@@ -10,7 +10,7 @@ public class CreateRecipeUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute() {
-        return recipeRepository.createRecipe();
+    public boolean execute(Recipe recipe) {
+        return recipeRepository.createRecipe(recipe);
     }
 }
