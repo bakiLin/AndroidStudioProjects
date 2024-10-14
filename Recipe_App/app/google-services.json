@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "493279927718",
+    "project_id": "recipeapp-b1348",
+    "storage_bucket": "recipeapp-b1348.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:493279927718:android:360a41157deaa53bce8367",
+        "android_client_info": {
+          "package_name": "ru.mirea.bakiev.recipe_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj142ij-UPFXvrJjJLuMrBVbH5agPpHxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
