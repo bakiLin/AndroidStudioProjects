@@ -1,6 +1,5 @@
 package ru.mirea.bakiev.data.repository;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,49 +8,39 @@ import ru.mirea.bakiev.domain.models.Recipe;
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
 
 public class RecipeRepositoryImpl implements RecipeRepository {
-    private List<Recipe> recipes = new ArrayList<>(
-            List.of(
-                    new Recipe(
-                            0, "Лазанья",
-                            "Вкусная штука",
-                            "любитель лазаньи",
-                            Arrays.asList(Category.Second_Course))
-            )
-    );
-
     public List<Recipe> getAllRecipes() {
-        return recipes;
+        return Arrays.asList(Recipe.getTestRecipe());
     }
 
-    public List<Recipe> filterByCategory(Category category) {
-        return recipes;
+    public List<Recipe> filterByCategory(List<Category> categories) {
+        return Arrays.asList(Recipe.getTestRecipe());
     }
 
     public List<Recipe> filterByName(String name) {
-        return recipes;
+        return Arrays.asList(Recipe.getTestRecipe());
     }
 
     public List<Recipe> filterByFavourite(Integer userID) {
-        return recipes;
+        return Arrays.asList(Recipe.getTestRecipe());
     }
 
     public Recipe getRecipe(Integer recipeID) {
-        return recipes.get(recipeID);
+        return Recipe.getTestRecipe();
     }
 
-    public boolean addToFavourite(Integer recipeID) {
-        return true;
+    public void addToFavourite(Integer recipeID) {
+        //Adding recipe to fav
     }
 
-    public boolean createRecipe(Recipe recipe) {
-        return true;
+    public void createRecipe(Recipe recipe) {
+        //Creating recipe
     }
 
-    public boolean editRecipe(Recipe recipe) {
-        return true;
+    public void editRecipe(Recipe recipe) {
+        //Editing recipe
     }
 
-    public boolean deleteRecipe(Integer recipeID) {
-        return true;
+    public void deleteRecipe(Integer recipeID) {
+        //Deleting recipe
     }
 }

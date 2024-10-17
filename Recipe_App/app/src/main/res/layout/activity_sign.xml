@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.SignInPageActivity">
+    tools:context=".presentation.auth.SignActivity">
 
     <Button
-        android:id="@+id/authButton"
+        android:id="@+id/signPageAuthButton"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginBottom="300dp"
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.5" />
 
     <Button
-        android:id="@+id/regButton"
+        android:id="@+id/signPageRegButton"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginBottom="100dp"

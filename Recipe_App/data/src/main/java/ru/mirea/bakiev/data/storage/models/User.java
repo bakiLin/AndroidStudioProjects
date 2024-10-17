@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.models;
+package ru.mirea.bakiev.data.storage.models;
 
 import java.util.List;
 
@@ -18,5 +18,29 @@ public class User {
         this.pass = pass;
         this.createdRecipesID = createdRecipes;
         this.favouriteRecipesID = favouriteRecipes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public List<Integer> getCreatedRecipesID() {
+        return createdRecipesID;
+    }
+
+    public List<Integer> getFavouriteRecipesID() {
+        return favouriteRecipesID;
     }
 }

@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.recipe;
 
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
 
@@ -9,7 +9,7 @@ public class DeleteRecipeUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute(Integer recipeID) {
-        return recipeRepository.deleteRecipe(recipeID);
+    public void execute(Integer recipeID) {
+        recipeRepository.deleteRecipe(recipeID);
     }
 }
