@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.recipe;
 
 import ru.mirea.bakiev.domain.models.Recipe;
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
@@ -10,7 +10,7 @@ public class EditRecipeUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute(Recipe recipe) {
-        return recipeRepository.editRecipe(recipe);
+    public void execute(Recipe recipe) {
+        recipeRepository.editRecipe(recipe);
     }
 }

@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".presentation.RegistrationActivity">
+    tools:context=".presentation.auth.RegActivity">
 
     <TextView
-        android:id="@+id/regNameTextView"
+        android:id="@+id/regPageNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="500dp"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/regEmailTextView"
+        android:id="@+id/regPageEmailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="270dp"
@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/regPassTextView"
+        android:id="@+id/regPagePassTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/regButton"
+        android:id="@+id/regPageRegButton"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginTop="530dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regNameEditText"
+            android:id="@+id/regPageNameTextInput"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:textSize="16sp" />
@@ -91,7 +91,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regEmailEditText"
+            android:id="@+id/regPageEmailTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textStart"
@@ -110,7 +110,7 @@
         app:layout_constraintVertical_bias="0.5">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/regPassEditText"
+            android:id="@+id/regPagePassTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="textStart"

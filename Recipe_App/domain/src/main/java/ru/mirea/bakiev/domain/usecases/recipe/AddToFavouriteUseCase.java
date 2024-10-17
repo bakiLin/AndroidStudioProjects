@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.recipe;
 
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
 
@@ -9,7 +9,7 @@ public class AddToFavouriteUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public boolean execute(Integer recipeID) {
-        return recipeRepository.addToFavourite(recipeID);
+    public void execute(Integer recipeID) {
+        recipeRepository.addToFavourite(recipeID);
     }
 }

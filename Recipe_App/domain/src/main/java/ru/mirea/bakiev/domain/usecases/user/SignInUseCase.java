@@ -1,5 +1,6 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.user;
 
+import ru.mirea.bakiev.domain.AuthCallback;
 import ru.mirea.bakiev.domain.repository.UserRepository;
 
 public class SignInUseCase {
@@ -9,7 +10,7 @@ public class SignInUseCase {
         this.userRepository = userRepository;
     }
 
-    public boolean execute(String email, String pass) {
-        return userRepository.singIn(email, pass);
+    public void execute(String email, String pass, AuthCallback authCallback) {
+        userRepository.signIn(email, pass, authCallback);
     }
 }

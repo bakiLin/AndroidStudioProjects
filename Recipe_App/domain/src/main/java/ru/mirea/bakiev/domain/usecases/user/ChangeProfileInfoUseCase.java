@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.user;
 
 import ru.mirea.bakiev.domain.repository.UserRepository;
 
@@ -9,7 +9,7 @@ public class ChangeProfileInfoUseCase {
         this.userRepository = userRepository;
     }
 
-    public boolean execute() {
-        return userRepository.changeProfileInfo();
+    public void execute() {
+        userRepository.changeProfileInfo();
     }
 }

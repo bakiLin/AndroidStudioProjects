@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.recipe;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ public class FilterByCategoryUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<Recipe> execute(Category category) {
-        return recipeRepository.filterByCategory(category);
+    public List<Recipe> execute(List<Category> categories) {
+        return recipeRepository.filterByCategory(categories);
     }
 }

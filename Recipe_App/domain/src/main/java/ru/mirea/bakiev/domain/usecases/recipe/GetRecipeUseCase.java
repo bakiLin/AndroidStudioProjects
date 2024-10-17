@@ -1,4 +1,4 @@
-package ru.mirea.bakiev.domain.usecases;
+package ru.mirea.bakiev.domain.usecases.recipe;
 
 import ru.mirea.bakiev.domain.models.Recipe;
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
