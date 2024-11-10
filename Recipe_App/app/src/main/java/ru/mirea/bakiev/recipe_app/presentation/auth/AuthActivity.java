@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -19,35 +20,33 @@ import ru.mirea.bakiev.domain.usecases.user.IsUserSignedUseCase;
 import ru.mirea.bakiev.domain.usecases.user.SignInUseCase;
 import ru.mirea.bakiev.recipe_app.R;
 import ru.mirea.bakiev.recipe_app.presentation.MainActivity;
+import ru.mirea.bakiev.recipe_app.presentation.viewModels.AuthActivityViewModel;
+import ru.mirea.bakiev.recipe_app.presentation.viewModels.AuthActivityViewModelFactory;
 
 public class AuthActivity extends AppCompatActivity {
     private TextInputEditText emailEditText;
     private TextInputEditText passEditText;
     private Button authButton;
 
-    private SignInUseCase signInUseCase;
-    private IsUserSignedUseCase isUserSignedUseCase;
+    private AuthActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+        viewModel = new ViewModelProvider(this, new AuthActivityViewModelFactory(this))
+                .get(AuthActivityViewModel.class);
+
         init();
         setButtons();
-        isSigned();
+        viewModel.isSigned();
     }
 
     private void init() {
         emailEditText = findViewById(R.id.authPageEmailTextInput);
         passEditText = findViewById(R.id.authPagePassTextInput);
         authButton = findViewById(R.id.authPageAuthButton);
-
-        AuthController authController = new FirebaseAuthController();
-        UserRepository userRepository = new UserRepositoryImpl(authController);
-
-        signInUseCase = new SignInUseCase(userRepository);
-        isUserSignedUseCase = new IsUserSignedUseCase(userRepository);
     }
 
     private void setButtons() {
@@ -63,27 +62,8 @@ public class AuthActivity extends AppCompatActivity {
                     return;
                 }
 
-                signInUseCase.execute(email, pass, new AuthCallback() {
-                    @Override
-                    public void onSuccess() {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure() {
-                        Toast.makeText(getApplicationContext(), "Ошибка",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+                viewModel.signIn(email, pass);
             }
         });
-    }
-
-    private void isSigned() {
-        if (isUserSignedUseCase.execute()) {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
-        }
     }
 }
