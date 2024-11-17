@@ -3,20 +3,37 @@ package ru.mirea.bakiev.domain.models;
 import java.util.List;
 
 public class User {
-    private int id;
-    private String username;
+    private String name;
     private String email;
     private String pass;
-    private List<Integer> createdRecipesID;
-    private List<Integer> favouriteRecipesID;
+    private List<String> createdRecipes;
+    private List<String> favouriteRecipes;
 
-    public User(int id, String username, String email, String pass,
-                List<Integer> createdRecipes, List<Integer> favouriteRecipes) {
-        this.id = id;
-        this.username = username;
+    public User(String name, String email, String pass, List<String> createdRecipes, List<String> favouriteRecipes) {
+        this.name = name;
         this.email = email;
         this.pass = pass;
-        this.createdRecipesID = createdRecipes;
-        this.favouriteRecipesID = favouriteRecipes;
+        this.createdRecipes = createdRecipes;
+        this.favouriteRecipes = favouriteRecipes;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public List<String> getCreatedRecipes() {
+        return createdRecipes;
+    }
+
+    public List<String> getFavouriteRecipes() {
+        return favouriteRecipes;
     }
 }

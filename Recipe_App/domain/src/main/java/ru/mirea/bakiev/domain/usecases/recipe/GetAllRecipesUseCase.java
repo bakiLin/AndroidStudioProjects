@@ -2,6 +2,7 @@ package ru.mirea.bakiev.domain.usecases.recipe;
 
 import java.util.List;
 
+import ru.mirea.bakiev.domain.ApiCallback;
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
 import ru.mirea.bakiev.domain.models.Recipe;
 
@@ -12,7 +13,7 @@ public class GetAllRecipesUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<Recipe> execute() {
-        return recipeRepository.getAllRecipes();
+    public void execute(ApiCallback<List<Recipe>> apiCallback) {
+        recipeRepository.getAllRecipes(apiCallback);
     }
 }

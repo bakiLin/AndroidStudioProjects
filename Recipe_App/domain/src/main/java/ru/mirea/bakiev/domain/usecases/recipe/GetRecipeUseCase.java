@@ -10,7 +10,7 @@ public class GetRecipeUseCase {
         this.recipeRepository = recipeRepository;
     }
 
-    public Recipe execute(Integer recipeID) {
-        return recipeRepository.getRecipe(recipeID);
+    public Recipe execute(String name) {
+        return recipeRepository.getRecipe(name);
     }
 }

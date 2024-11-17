@@ -1,8 +1,8 @@
 package ru.mirea.bakiev.data.api;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
+import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -10,10 +10,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import ru.mirea.bakiev.domain.ApiCallback;
 import ru.mirea.bakiev.domain.models.Recipe;
 
 public class RemoteDataSource {
-    private static final String BASE_URL = "https://0vj7g.wiremockapi.cloud/";
+    private static final String BASE_URL = "https://0vj7g.wiremockapi.cloud";
     private RecipeApi recipeApi;
 
     public RemoteDataSource() {
@@ -25,25 +26,38 @@ public class RemoteDataSource {
         recipeApi = retrofit.create(RecipeApi.class);
     }
 
-    public LiveData<List<Recipe>> getAllRecipes() {
-        MutableLiveData<List<Recipe>> recipeListLiveData = new MutableLiveData<>();
-
-        recipeApi.getAllRecipes().enqueue(new Callback<RecipeResponse>() {
+    public void getAllRecipe(ApiCallback<List<Recipe>> apiCallback) {
+        recipeApi.getAllRecipes().enqueue(new Callback<List<Post>>() {
             @Override
-            public void onResponse(Call<RecipeResponse> call, Response<RecipeResponse> response) {
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    recipeListLiveData.setValue(response.body().getData());
+                    apiCallback.onSuccess(ChangeClass(response.body()));
                 } else {
-                    recipeListLiveData.setValue(null);
+                    apiCallback.onFailure(new Exception("Error"));
                 }
             }
 
             @Override
-            public void onFailure(Call<RecipeResponse> call, Throwable t) {
-                recipeListLiveData.setValue(null);
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                apiCallback.onFailure((Exception) t);
             }
         });
+    }
 
-        return recipeListLiveData;
+    private List<Recipe> ChangeClass(List<Post> response) {
+        List<Recipe> recipeList = new ArrayList<>();
+
+        for (Post r : response) {
+            Recipe recipe = new Recipe();
+
+            recipe.setName(r.getName());
+            recipe.setDescription(r.getDescription());
+            recipe.setAuthor(r.getAuthor());
+            recipe.setImg(r.getImg());
+
+            recipeList.add(recipe);
+        }
+
+        return recipeList;
     }
 }

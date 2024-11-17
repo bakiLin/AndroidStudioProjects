@@ -2,19 +2,17 @@ package ru.mirea.bakiev.domain.repository;
 
 import java.util.List;
 
-import ru.mirea.bakiev.domain.models.Category;
+import ru.mirea.bakiev.domain.ApiCallback;
 import ru.mirea.bakiev.domain.models.Recipe;
 
 public interface RecipeRepository {
-    public List<Recipe> getAllRecipes();
-
-    public List<Recipe> filterByCategory(List<Category> categories);
+    public void getAllRecipes(ApiCallback<List<Recipe>> apiCallback);
 
     public List<Recipe> filterByName(String name);
 
     public List<Recipe> filterByFavourite(Integer userID);
 
-    public Recipe getRecipe(Integer recipeID);
+    public Recipe getRecipe(String name);
 
     public void addToFavourite(Integer recipeID);
 
