@@ -1,9 +1,20 @@
-package ru.mirea.bakiev.domain.models;
+package ru.mirea.bakiev.data.api;
 
-public class Recipe {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+public class Post {
+    @SerializedName("name")
+    @Expose
     private String name;
-    private String description;
+    @SerializedName("desc")
+    @Expose
+    private String desc;
+    @SerializedName("author")
+    @Expose
     private String author;
+    @SerializedName("img")
+    @Expose
     private String img;
 
     public void setName(String name) {
@@ -14,12 +25,12 @@ public class Recipe {
         return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescription(String desc) {
+        this.desc = desc;
     }
 
     public String getDescription() {
-        return description;
+        return desc;
     }
 
     public void setAuthor(String author) {

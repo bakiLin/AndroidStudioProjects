@@ -3,29 +3,34 @@ package ru.mirea.bakiev.data.repository;
 import java.util.Arrays;
 import java.util.List;
 
-import ru.mirea.bakiev.domain.models.Category;
+import ru.mirea.bakiev.data.api.RemoteDataSource;
+import ru.mirea.bakiev.domain.ApiCallback;
 import ru.mirea.bakiev.domain.models.Recipe;
+import ru.mirea.bakiev.domain.models.User;
 import ru.mirea.bakiev.domain.repository.RecipeRepository;
 
 public class RecipeRepositoryImpl implements RecipeRepository {
-    public List<Recipe> getAllRecipes() {
-        return Arrays.asList(Recipe.getTestRecipe());
+    private User user;
+    private RemoteDataSource remoteDataSource;
+
+    public RecipeRepositoryImpl(RemoteDataSource remoteDataSource) {
+        this.remoteDataSource = remoteDataSource;
     }
 
-    public List<Recipe> filterByCategory(List<Category> categories) {
-        return Arrays.asList(Recipe.getTestRecipe());
+    public void getAllRecipes(ApiCallback<List<Recipe>> apiCallback) {
+        remoteDataSource.getAllRecipe(apiCallback);
     }
 
     public List<Recipe> filterByName(String name) {
-        return Arrays.asList(Recipe.getTestRecipe());
+        return Arrays.asList(new Recipe());
     }
 
     public List<Recipe> filterByFavourite(Integer userID) {
-        return Arrays.asList(Recipe.getTestRecipe());
+        return Arrays.asList(new Recipe());
     }
 
-    public Recipe getRecipe(Integer recipeID) {
-        return Recipe.getTestRecipe();
+    public Recipe getRecipe(String name) {
+        return new Recipe();
     }
 
     public void addToFavourite(Integer recipeID) {
