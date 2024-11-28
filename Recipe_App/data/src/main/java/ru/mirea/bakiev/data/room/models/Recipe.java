@@ -4,10 +4,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.List;
-
-import ru.mirea.bakiev.data.storage.models.Category;
-
 @Entity(tableName = "recipe")
 public class Recipe {
     @ColumnInfo(name = "id")
